@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Wine3</title>
 </head>
 <body>
@@ -24,9 +25,8 @@
         </textarea>
     </div>
     <input type="submit" class="btn btn-danger" value="Enviar">
-
-
     </form>
-    
+
+    @include('secciones.comunidad')
 </body>
 </html>

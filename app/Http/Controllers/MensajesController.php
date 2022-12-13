@@ -23,11 +23,6 @@ class MensajesController extends Controller
     public function store(Request $request)
     {
         $mensaje=new Mensaje;
-        /* $mensaje->nombre = $request->nombre;
-        $mensaje->email = $request->email;
-        $mensaje->telefono = $request->telefono;
-        $mensaje->mensaje = $request->mensaje;
-        $mensaje->save(); */
         $mensaje->create(request()->all());
         return redirect()->back();
     }

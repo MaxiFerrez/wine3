@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::resource('mensajes',MensajesController::class);
+
+/* Route::resource('cosechas',CosechaController::class); */
