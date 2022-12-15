@@ -21,3 +21,8 @@ Route::get('/', function () {
 Route::resource('mensajes',MensajesController::class);
 
 /* Route::resource('cosechas',CosechaController::class); */
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
