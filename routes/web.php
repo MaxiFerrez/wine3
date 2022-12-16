@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('mensajes',MensajesController::class);
+Route::get('mensajes', [MensajesController::class,'index']);
+//Route::get('/contacto', [formularioController::class, 'index'])->name('contacto.index');
 
 /* Route::resource('cosechas',CosechaController::class); */
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
