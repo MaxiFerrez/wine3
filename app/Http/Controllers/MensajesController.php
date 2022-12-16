@@ -33,7 +33,13 @@ class MensajesController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        // Validación del formulario. Autor: Leandro.
+        $this->validate($request, [
+            'email' => 'required|email',
+            'asunto'=>'required',
+            'mensaje' => 'required'
+            ]);
        /*  $mensaje=new Mensaje;
         $mensaje->create(request()->all());
         response()->json([
