@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>HOLA MUNDO</h1>
+    <a href="#3">IR a la 3ra</a>
 
     <form action="{{route('mensajes.store')}}" method="POST">
     @csrf
@@ -28,5 +29,8 @@
     </form>
 
     @include('secciones.comunidad')
+    @include('secciones.comunidad')
+    <div id="3">@include('secciones.comunidad')</div>
+    
 </body>
 </html>
