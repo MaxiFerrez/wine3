@@ -22,3 +22,8 @@ Route::get('mensajes', [MensajesController::class,'index']);
 //Route::get('/contacto', [formularioController::class, 'index'])->name('contacto.index');
 
 /* Route::resource('cosechas',CosechaController::class); */
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});
