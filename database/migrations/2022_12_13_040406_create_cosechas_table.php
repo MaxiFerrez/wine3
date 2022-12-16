@@ -23,6 +23,13 @@ return new class extends Migration
             $table->string('subtitulo2');
             $table->string('descripcion2');
             
+            $table->string('subtitulo3');  // Subtitulo de la categoria de los datos de los NFT
+            $table->string('descripcion3');  // Caracteristicas de los NFT -Fecha-etc
+            $table->string('link');  //url opensea
+            
+            
+            
+
             $table->timestamps();
         });
     }

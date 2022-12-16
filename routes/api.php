@@ -26,7 +26,7 @@ Route::delete('/mensajes/{id}', [MensajesController::class, 'destroy']);
 Route::controller(CosechaController::class)->group(function () {
 
     Route::get('/cosecha','index');
-    Route::put('/cosecha/{id}', 'update')->name('cosecha.update');
+    Route::put('/cosecha/{id}', 'update');
 });
 
 //Route::get('/cosecha', [CosechaController::class, 'index']);
