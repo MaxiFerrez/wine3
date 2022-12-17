@@ -29,10 +29,8 @@ class CosechaController extends Controller
             $cosechas1[$i]['link'] = $cosecha->link;
             
             if (isset($cosecha->imagen)) { 
-                $cosechas1[$i]['imagen'] = env("APP_URL") . "/storage/" . $cosecha->imagen;
-            } else {
                 $cosechas1[$i]['imagen'] = $cosecha->imagen;
-            }
+            } 
         }
         return response()->json($cosechas1, 200);
 
