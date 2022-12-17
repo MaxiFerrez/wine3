@@ -60,7 +60,7 @@ class CosechaController extends Controller
 
        return response()->json(['mensaje'=>$cosecha]); */
 
-       $cosecha = Cosecha::findOrFail($id->id);
+      /*  $cosecha = Cosecha::findOrFail($id->id);
        if ($request->hasFile('imagen')) {
         if ($cosecha->imagen != "") {
             Storage::disk('public')->delete($cosecha->imagen);
@@ -77,7 +77,7 @@ class CosechaController extends Controller
     return response()->json([
         'noticia' => $cosecha,
         'mensaje' => "La noticia fue actualizada",
-    ], 200);
+    ], 200); */
 
 
     }

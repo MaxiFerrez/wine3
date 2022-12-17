@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mensaje;
 use Illuminate\Http\Request;
+use App\Mail\BienvenidaMail;
+use Illuminate\Support\Facades\Mail;
 
 class MensajesController extends Controller
 {
@@ -14,10 +16,8 @@ class MensajesController extends Controller
         //return response()->json($mensajes,200);
         //return $mensajes;
         if(($mensajes == "[]")){ 
-
             return response()->json([
                 'mensaje' => "No hay mensajes",
-               
             ],404);}
             else {
                 return response()->json($mensajes,200); 
@@ -32,6 +32,7 @@ class MensajesController extends Controller
             }   
         //return view('mensajesadmin',compact('mensajes'));        
        
+
     }
 
     public function store(Request $request)
@@ -42,19 +43,15 @@ class MensajesController extends Controller
             'asunto'=>'required',
             'mensaje' => 'required'
             ]);
-       /*  $mensaje=new Mensaje;
-        $mensaje->create(request()->all());
-        response()->json([
-            'estado' => true,
-            'mensaje' =>'Su formulario ha sido enviado,Gracias'
-        ],200); */
-        //return redirect()->back(); 
 
+        //  
         $mensajes = new Mensaje;
-        //$contacto = contacto::create($request->all());
         $mensajes->email = $request->email;
         $mensajes->asunto = $request->asunto;
         $mensajes->mensaje = $request->mensaje;
+        // Se envia el mail a la direccion de correo
+        $correo = new BienvenidaMail;
+        Mail::to("$request->email")->send($correo);
 
         if ($mensajes->save()) {
             return response()->json([
