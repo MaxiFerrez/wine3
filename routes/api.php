@@ -4,6 +4,8 @@ use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\MensajesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Mail\BienvenidaMail;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +29,12 @@ Route::controller(CosechaController::class)->group(function () {
 
     Route::get('/cosecha','index');
     Route::put('/cosecha/{id}', 'update');
+});
+
+Route::get('/mail',function(){
+    $correo = new BienvenidaMail;
+    Mail::to('maxiferrez@gmail.com')->send($correo);
+    return "Enviado con exito";
 });
 
 //Route::get('/cosecha', [CosechaController::class, 'index']);
