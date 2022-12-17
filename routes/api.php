@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CosechaController;
 use App\Http\Controllers\MensajesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/mensajes', [MensajesController::class, 'index']);
 Route::post('/mensajes', [MensajesController::class, 'store']);
 Route::delete('/mensajes/{id}', [MensajesController::class, 'destroy']);
+
+
+
+Route::controller(CosechaController::class)->group(function () {
+
+    Route::get('/cosecha','index');
+    Route::put('/cosecha/{id}', 'update');
+});
+
+//Route::get('/cosecha', [CosechaController::class, 'index']);
+//Route::put('/cosecha/{id}', [CosechaController::class, 'update']);
+
+//Route::apiResource('/cosecha',[CosechaController::class]);
 
 //Route::get('mensajes',[MensajesController::class,'index']);
 

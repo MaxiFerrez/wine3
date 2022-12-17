@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('mensajes', [MensajesController::class,'index']);
+//Route::get('mensajes', [MensajesController::class,'index']);
 //Route::get('/contacto', [formularioController::class, 'index'])->name('contacto.index');
 
 /* Route::resource('cosechas',CosechaController::class); */

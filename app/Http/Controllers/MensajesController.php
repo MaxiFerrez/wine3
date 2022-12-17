@@ -11,6 +11,7 @@ class MensajesController extends Controller
     public function index()
     {
         $mensajes=Mensaje::all();
+        //return response()->json($mensajes,200);
         //return $mensajes;
         if(($mensajes == "[]")){ 
 
@@ -18,15 +19,16 @@ class MensajesController extends Controller
                 'mensaje' => "No hay mensajes",
                
             ],404);}
-            else { 
-                foreach ($mensajes as $i => $mje) {
+            else {
+                return response()->json($mensajes,200); 
+               /*  foreach ($mensajes as $i => $mje) {
         
                     $mensajes1[$i]['id'] = $mje->id;
                     $mensajes1[$i]['email'] = $mje->email;
                     $mensajes1[$i]['asunto'] = $mje->asunto;
                     $mensajes1[$i]['mensaje'] = $mje->mensaje;
-                } 
-                return response()->json($mensajes1,200);
+                }  */
+                
             }   
         //return view('mensajesadmin',compact('mensajes'));        
        
