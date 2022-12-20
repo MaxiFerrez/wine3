@@ -16,17 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/mensajes', [MensajesController::class, 'index']);
 Route::post('/mensajes', [MensajesController::class, 'store']);
-Route::delete('/mensajes/{id}', [MensajesController::class, 'destroy']);
-
-
 
 Route::controller(CosechaController::class)->group(function () {
-
     Route::get('/cosecha','index');
-    Route::put('/cosecha/{id}', 'update');
 });
 
 //Route::get('/cosecha', [CosechaController::class, 'index']);
