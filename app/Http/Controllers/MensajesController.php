@@ -4,68 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Models\Mensaje;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class MensajesController extends Controller
 {
    
     public function index()
     {
-        $mensajes=Mensaje::all();
-        //return response()->json($mensajes,200);
-        //return $mensajes;
-        if(($mensajes == "[]")){ 
+        $mensajes = Mensaje::all();
 
+        if(($mensajes == "[]")){ 
             return response()->json([
-                'mensaje' => "No hay mensajes",
-               
-            ],404);}
-            else {
-                return response()->json($mensajes,200); 
-               /*  foreach ($mensajes as $i => $mje) {
-        
-                    $mensajes1[$i]['id'] = $mje->id;
-                    $mensajes1[$i]['email'] = $mje->email;
-                    $mensajes1[$i]['asunto'] = $mje->asunto;
-                    $mensajes1[$i]['mensaje'] = $mje->mensaje;
-                }  */
-                
-            }   
-        //return view('mensajesadmin',compact('mensajes'));        
-       
+                'mensaje' => "No hay mensajes",               
+            ],404);
+        } else return response()->json($mensajes,200);        
     }
 
     public function store(Request $request)
     {   
-        // Validación del formulario. Autor: Leandro.
-        $this->validate($request, [
+        // Validación del formulario de contactos.
+        $validaciones = [
             'email' => 'required|email',
             'asunto'=>'required',
             'mensaje' => 'required'
-            ]);
-       /*  $mensaje=new Mensaje;
-        $mensaje->create(request()->all());
-        response()->json([
-            'estado' => true,
-            'mensaje' =>'Su formulario ha sido enviado,Gracias'
-        ],200); */
-        //return redirect()->back(); 
+        ];
+        $validacion = Validator::make($request->all(), $validaciones);
 
-        $mensajes = new Mensaje;
-        //$contacto = contacto::create($request->all());
-        $mensajes->email = $request->email;
-        $mensajes->asunto = $request->asunto;
-        $mensajes->mensaje = $request->mensaje;
+        if ($validacion->fails()) {
+            return response()->json($validacion->errors(), 422);
+        }
 
-        if ($mensajes->save()) {
+        $mensaje = new Mensaje();    
+        $mensaje->email   = $request->email;
+        $mensaje->asunto  = $request->asunto;
+        $mensaje->mensaje = $request->mensaje;
+
+        if ($mensaje->save()) {
             return response()->json([
                 'estado' => true,
-                'mensaje' => 'Su formulario ha sido enviado, Gracias por comunicarte',
+                'mensaje' => 'Formulario recibido.',
             ], 200);
         } else {
             return response()->json([
                 'estado' => false,
-                'mensaje' => 'Su formulario no se envio',
-            ], 404);
+                'mensaje' => 'Error.',
+            ], 400);
         };
 
     }
@@ -76,27 +59,4 @@ class MensajesController extends Controller
         //return view('mensajes.show',compact('mensaje'));
     }
 
-    public function edit(Mensaje $mensaje)
-    {
-        //
-    }
-
-    public function update(Request $request, Mensaje $mensaje)
-    {
-        //
-    }
-
-    public function destroy(Request $request)
-    {   
-        Mensaje::destroy($request->id);
-       // $mensaje->delete();
-        
-        
-        
-        //return redirect(route('mensajes.index'));   
-        return response()->json([
-            'mensaje' => "Eliminado Exitosamente",
-           
-        ],200);     
-    }
 }
